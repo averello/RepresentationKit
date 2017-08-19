@@ -1,0 +1,22 @@
+{
+  "name": "RepresentationKit",
+  "version": "1.1.4",
+  "summary": "A short description of RepresentationKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Georges Boumis/RepresentationKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Georges Boumis": "boumis@abzorbagames.com"
+  },
+  "source": {
+    "git": "https://github.com/Georges Boumis/RepresentationKit.git",
+    "tag": "1.1.4"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "RepresentationKit/Classes/**/*"
+}

@@ -1,0 +1,6 @@
+use_frameworks!
+target 'RepresentationKit_Tests' do
+  platform :ios, '8.0'
+
+  pod 'RepresentationKit', :path => '../'
+end
