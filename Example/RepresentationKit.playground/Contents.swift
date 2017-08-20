@@ -6,42 +6,43 @@ import RepresentationKit
 
 struct Book {
     let name: String
-    let IBAN: UUID
+    let edition: String
 }
 
 extension Book: Representable {
     func represent(using representation: Representation) -> Representation {
         return representation
             .with(key: "name", value: self.name)
-            .with(key: "IBAN", value: self.IBAN.uuidString)
+            .with(key: "edition", value: self.edition)
     }
 }
 
 extension Book: CustomStringConvertible {
     var description: String {
-        return "Book(\(self.name),\(self.IBAN.uuidString))"
+        return "Book(\(self.name),\(self.edition))"
     }
 }
 
-let books = (0..<2).map { Book(name: "Book \($0)", IBAN: UUID()) }
+let books = (0..<2).map { Book(name: "Book \($0)", edition: "Edition \($0)") }
 print("Books = \(books)")
 
 let arrayRep = ArrayRepresentationBuilder()
 let dictRep = DictionaryRepresentationBuilder()
 
-//let arrayRes: ArrayRepresentationBuilder = books[0].represent(using: arrayRep)
-//print(arrayRes.array)
+let arrayResuslt: ArrayRepresentationBuilder = books[0].represent(using: arrayRep)
+print(arrayResuslt.array)
 
-//let dictRes: DictionaryRepresentation = books[0].represent(using: dictRep)
-//print(dictRes.dictionary)
+let dictResuslt: DictionaryRepresentation = books[0].represent(using: dictRep)
+print(dictResuslt.dictionary)
 
-//let deepRep = DeepArrayRepresentationBuilder(representation: JSONRepresentationBuilder())
-//let deepRepRes: DeepArrayRepresentationBuilder = books.represent(using: deepRep)
-//print(deepRepRes.array.map { $0.json })
+let dictionaryRepresentationOfAnArray: DictionaryRepresentation = books.represent(using: dictRep)
+print(dictionaryRepresentationOfAnArray.dictionary)
+
+let deepRep = DeepArrayRepresentationBuilder(representation: JSONRepresentationBuilder())
+let deepRepRes: DeepArrayRepresentationBuilder = books.represent(using: deepRep)
+print(deepRepRes.array.map { $0.dictionary })
 
 
-//let enume: DictionaryRepresentation = books.represent(using: dictRep)
-//print(enume.dictionary)
 //
 //let typedArrayRep = TypedArrayRepresentationBuilder<String>()
 //let a: TypedArrayRepresentationBuilder<String> = books[0].represent(using: typedArrayRep)
