@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RepresentationKit'
-  s.version          = '1.1.4'
+  s.version          = '2.0'
   s.summary          = 'Create representation of objects.'
 
 # This description is used to generate tags and improve search results.
