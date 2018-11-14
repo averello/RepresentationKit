@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RepresentationKit'
-  s.version          = '2.2'
+  s.version          = '2.2.1'
   s.summary          = 'Create representation of objects.'
 
 # This description is used to generate tags and improve search results.
@@ -32,10 +32,6 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'RepresentationKit/Classes/**/*'
 
-  s.xcconfig = { 
-	  "SWIFT_VERSION" => '4.0',
-  }
-  
   # s.resource_bundles = {
   #   'RepresentationKit' => ['RepresentationKit/Assets/*.png']
   # }
