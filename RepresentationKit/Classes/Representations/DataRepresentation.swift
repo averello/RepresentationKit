@@ -1,8 +1,8 @@
 //
-//  ArrayRepresentation.swift
+//  DataRepresentation.swift
 //  RepresentationKit
 //
-//  Created by Georges Boumis on 07/10/2016.
+//  Created by Georges Boumis on 19/11/2018.
 //
 //  Licensed to the Apache Software Foundation (ASF) under one
 //  or more contributor license agreements.  See the NOTICE file
@@ -11,9 +11,9 @@
 //  to you under the Apache License, Version 2.0 (the
 //  "License"); you may not use this file except in compliance
 //  with the License.  You may obtain a copy of the License at
-//  
+//
 //    http://www.apache.org/licenses/LICENSE-2.0
-//  
+//
 //  Unless required by applicable law or agreed to in writing,
 //  software distributed under the License is distributed on an
 //  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -47,20 +47,8 @@ import Foundation
 ///     // Prints ["Super title", "Pepper's"]
 ///
 /// - SeeAlso: `TypedArrayRepresentation`
-public protocol ArrayRepresentation: Representation, Representable {
-    
-    /// the array of the represented values.
-    var array: [Any] { get }
-}
+public protocol DataRepresentation: Representation, Representable {
 
-public extension ArrayRepresentation {
-    
-    public func represent<Rep>(using representation: Rep) -> Rep where Rep: Representation {
-        var r = representation
-        
-        for (index,element) in self.array.enumerated() {
-            r = r.with(key: "\(index)", value: element) as! Rep
-        }
-        return r
-    }
+    /// the array of the represented values.
+    var data: Data { get }
 }
