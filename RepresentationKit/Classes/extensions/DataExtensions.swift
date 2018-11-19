@@ -1,5 +1,5 @@
 //
-//  DataRepresentation.swift
+//  DataExtensions.swift
 //  RepresentationKit
 //
 //  Created by Georges Boumis on 19/11/2018.
@@ -24,9 +24,9 @@
 
 import Foundation
 
-/// Describes a data representation
-public protocol DataRepresentation: Representation, Representable {
-
-    /// the data 
-    var data: Data { get }
+extension Data: Representable {
+    
+    public func represent(using representation: Representation) -> Representation {
+        return representation.with(key: "data", value: self)
+    }
 }
