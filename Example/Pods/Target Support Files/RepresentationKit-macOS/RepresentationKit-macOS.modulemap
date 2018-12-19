@@ -1,0 +1,6 @@
+framework module RepresentationKit {
+  umbrella header "RepresentationKit-macOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

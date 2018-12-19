@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RepresentationKit'
-  s.version          = '2.3.1'
+  s.version          = '2.4'
   s.summary          = 'Create representation of objects.'
 
 # This description is used to generate tags and improve search results.
@@ -29,14 +29,9 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
+  s.macos.deployment_target = '10.9'
 
   s.source_files = 'RepresentationKit/Classes/**/*'
 
-  # s.resource_bundles = {
-  #   'RepresentationKit' => ['RepresentationKit/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'Foundation'
 end

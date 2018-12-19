@@ -1,5 +1,5 @@
 PODS:
-  - RepresentationKit (2.3.1)
+  - RepresentationKit (2.4)
 
 DEPENDENCIES:
   - RepresentationKit (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RepresentationKit: 5464e6bac0c280d5a7a91388b84f2e7d1953f5f6
+  RepresentationKit: 7e891b9dea5020ce09e6abf3ff6220d67b8f5fcb
 
-PODFILE CHECKSUM: 0a735de6cbeeb77efd4ee2fa9c557436c8e9be9b
+PODFILE CHECKSUM: a0cdcdb71822879859d3ed29549aec518a6178b3
 
 COCOAPODS: 1.5.3

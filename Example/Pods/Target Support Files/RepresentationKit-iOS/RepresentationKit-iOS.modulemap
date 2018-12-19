@@ -1,5 +1,5 @@
 framework module RepresentationKit {
-  umbrella header "RepresentationKit-umbrella.h"
+  umbrella header "RepresentationKit-iOS-umbrella.h"
 
   export *
   module * { export * }
