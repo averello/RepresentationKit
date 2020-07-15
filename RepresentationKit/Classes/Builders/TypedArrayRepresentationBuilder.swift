@@ -24,24 +24,49 @@
 
 import Foundation
 
-final public class TypedArrayRepresentationBuilder<E>: TypedArrayRepresentation  {
+final public class TypedArrayRepresentationBuilder<E>: TypedArrayRepresentation {
     public typealias Element = E
     final private let _array: [Element]
+
     final public var array: [Element] {
-        return self._array
+        return self._array.flatMap { (o) -> [Element] in
+            if let arrayBuilder = o as? TypedArrayRepresentationBuilder<E> {
+                return arrayBuilder.array
+            }
+            return [o]
+        }
     }
-    
+
     public init() {
         self._array = []
     }
-    
+
     private init(_ array: [Element]) {
         self._array = array
     }
     
     final public func with<Key,Value>(key: Key, value: Value) -> Representation where Key: LosslessStringConvertible & Hashable {
-        var array: [Element] = self._array
+        var array: [Element] = self.array
         array.append(value as! Element)
         return TypedArrayRepresentationBuilder(array)
+    }
+
+    public func represent<R>(using representation: R) -> R where R : Representation {
+        var r = representation
+
+        for (index,element) in self.enumerated() {
+            r = r.with(key: "\(index)", value: element)
+        }
+        return r
+    }
+}
+
+extension TypedArrayRepresentationBuilder: Collection {
+
+    public var startIndex: Int { return self._array.startIndex }
+    public var endIndex: Int { return self._array.endIndex }
+    public func index(after i: Int) -> Int { return self._array.index(after: i) }
+    public subscript(position: Int) -> E {
+        return self._array[position]
     }
 }

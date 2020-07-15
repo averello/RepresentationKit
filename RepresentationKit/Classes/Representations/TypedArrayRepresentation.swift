@@ -54,14 +54,9 @@ public protocol TypedArrayRepresentation: Representation, Representable {
     var array: [Element] { get }
 }
 
-public extension TypedArrayRepresentation {
-    
-    func represent<Rep>(using representation: Rep) -> Rep where Rep: Representation {
-        var r = representation
-        
-        for (index,element) in self.array.enumerated() {
-            r = r.with(key: "\(index)", value: element) as! Rep
-        }
-        return r
+extension TypedArrayRepresentation where Element: Equatable {
+
+    static public func ==(lhs: Self, rhs: Self) -> Bool {
+        return lhs.array == rhs.array
     }
 }

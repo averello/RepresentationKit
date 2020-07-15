@@ -27,7 +27,12 @@ import Foundation
 final public class ArrayRepresentationBuilder: ArrayRepresentation  {    
     final private let _array: [Any]
     final public var array: [Any] {
-        return self._array
+        return self._array.flatMap { (o) -> Any in
+            if let arrayBuilder = o as? ArrayRepresentationBuilder {
+                return arrayBuilder.array
+            }
+            return o
+        }
     }
     
     public init() {
@@ -38,9 +43,16 @@ final public class ArrayRepresentationBuilder: ArrayRepresentation  {
         self._array = array
     }
     
-    final public func with<Key,Value>(key: Key, value: Value) -> Representation where Key: LosslessStringConvertible & Hashable {
-        var array: [Any] = self._array
-        array.append(value)
-        return ArrayRepresentationBuilder(array)
+    final public func with<Key,Value>(key: Key, value: Value) -> Representation
+        where Key: LosslessStringConvertible & Hashable {
+            var array: [Any] = self._array
+            array.append(value)
+            return ArrayRepresentationBuilder(array)
+    }
+
+    public func represent<Rep>(using representation: Rep) -> Rep
+        where Rep : Representation {
+            return representation
+                .with(key: "ArrayRepresentationBuilder", value: self.array)
     }
 }

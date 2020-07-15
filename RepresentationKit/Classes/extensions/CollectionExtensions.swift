@@ -25,13 +25,22 @@
 import Foundation
 
 public extension Collection where Self.Iterator.Element: Representable {
-    
-    func represent<Rep>(using representation: Rep) -> Rep where Rep: Representation {
+
+    func represent<R>(using representation: R) -> R where R : Representation {
         var r = representation
-        
+
         for (index,element) in self.enumerated() {
-            r = r.with(key: "\(index)", value: element) as! Rep
+            let value = element.represent(using: representation)
+            r = r.with(key: "\(index)", value: value)
         }
         return r
     }
+}
+
+private func _represent<E, R>(_ element: E, using representation: R) -> R where R : Representation {
+    if let representable = element as? Representable {
+        let r = representable.represent(using: representation)
+        return _represent(r, using: representation)
+    }
+    return representation
 }

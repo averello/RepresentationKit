@@ -24,7 +24,7 @@
 
 import Foundation
 
-final public class DeepArrayRepresentationBuilder<Rep>: TypedArrayRepresentation where Rep: Representation {
+final public class DeepArrayRepresentationBuilder<Rep>: TypedArrayRepresentation where Rep: Representable & Representation  {
     
     public typealias Element = Rep
     

@@ -47,7 +47,7 @@ import Foundation
 ///     // Prints ["Super title", "Pepper's"]
 ///
 /// - SeeAlso: `TypedArrayRepresentation`
-public protocol ArrayRepresentation: Representation, Representable {
+public protocol ArrayRepresentation: Representation, Representable, Collection {
     
     /// the array of the represented values.
     var array: [Any] { get }
@@ -62,5 +62,14 @@ public extension ArrayRepresentation {
             r = r.with(key: "\(index)", value: element) as! Rep
         }
         return r
+    }
+}
+
+extension ArrayRepresentation {
+    public var startIndex: Int { return self.array.startIndex }
+    public var endIndex: Int { return self.array.endIndex }
+    public func index(after i: Int) -> Int { return self.array.index(after: i) }
+    public subscript(position: Int) -> Any {
+        return self.array[position]
     }
 }

@@ -1,8 +1,8 @@
 //
-//  DictionaryExtension.swift
+//  StringExtensions.swift
 //  RepresentationKit
 //
-//  Created by Georges Boumis on 20/08/2017.
+//  Created by Georges Boumis on 26/4/20.
 //
 //  Licensed to the Apache Software Foundation (ASF) under one
 //  or more contributor license agreements.  See the NOTICE file
@@ -24,13 +24,9 @@
 
 import Foundation
 
-extension Dictionary: Representable where Key: LosslessStringConvertible {
-    
-    public func represent<Rep>(using representation: Rep) -> Rep where Rep: Representation {
-        return self.reduce(representation) { (rep, pair) -> Rep in
-            let key = pair.key
-            let value = pair.value
-            return rep.with(key: key, value: value) as! Rep
-        }
-    }
-}
+//extension String: Representable {
+//
+//    public func represent<R>(using representation: R) -> R where R : Representation {
+//        return representation.with(key: "String", value: self)
+//    }
+//}
